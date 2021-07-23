@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GET /schemes snapshot test 1`] = `
+Array [
+  Object {
+    "colors": Array [
+      "#6f2206",
+      "#a53e53",
+      "#cdae88",
+    ],
+    "id": 1,
+    "name": "strawberry waffles",
+  },
+  Object {
+    "colors": Array [
+      "#7b493d",
+      "#6d625f",
+      "#8c9db4",
+    ],
+    "id": 2,
+    "name": "loam",
+  },
+]
+`;
