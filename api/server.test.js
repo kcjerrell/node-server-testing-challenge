@@ -59,3 +59,24 @@ describe('POST /schemes', () => {
 		expect(res.body.message).toMatch(/name is required/);
 	})
 })
+
+describe('DELETE /schemes', () => {
+	test('responds with code 200', async () => {
+		const res = await request(server).delete('/schemes/1');
+		expect(res.status).toBe(200);
+	})
+	test('responds with deleted scheme', async () => {
+		const res = await request(server).delete('/schemes/2');
+		expect(res.body).toMatchObject(testData[1]);
+	})
+	test('gives error for invalid id', async () => {
+		const res = await request(server).delete('/schemes/apple');
+		expect(res.status).toBe(400);
+		expect(res.body.message).toMatch(/invalid/);
+	})
+	test('gives error for id not found', async () => {
+		const res = await request(server).delete('/schemes/1500');
+		expect(res.status).toBe(404);
+		expect(res.body.message).toMatch(/not found/);
+	})
+});

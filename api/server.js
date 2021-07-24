@@ -49,10 +49,19 @@ server.post('/schemes', (req, res, next) => {
 		error => next(error))
 });
 
-server.delete('/schemes', (req, res, next) => {
-	Schemes.getAll().then(
+server.delete('/schemes/:id', (req, res, next) => {
+	const id = parseInt(req.params.id);
+
+	if (isNaN(id)) {
+		return next({ status: 400, message: "invalid id" });
+	}
+
+	Schemes.remove(id).then(
 		result => {
-			res.status(200).json(result);
+			if (result)
+				return res.status(200).json(result);
+			else
+				return next({ status: 404, message: "id not found" });
 		},
 		error => next(error))
 });

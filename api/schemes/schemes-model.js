@@ -40,7 +40,10 @@ async function add(scheme) {
 async function remove(id) {
 	const index = schemes.findIndex(scheme => scheme.id === id);
 
-	const scheme = schemes[index];
+	if (index >= 0)
+		return schemes.splice(index, 1)[0];
+	else
+		return null;
 }
 
 module.exports = {
